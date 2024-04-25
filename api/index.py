@@ -10,5 +10,6 @@ async def home():
 @app.get("/chat-exporter")
 async def chat():
     url = request.query_string.decode("utf-8").replace("url=", "")
-    content = requests.get(url).text
+    decoded_url = unquote(url)
+    content = requests.get(decoded_url).text
     return content
